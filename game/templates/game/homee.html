@@ -1,0 +1,380 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games</title>
+  <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <style>
+    :root {
+      --first-color: orange;
+      --second-color: #fb7806;
+      --third-color: #000405;
+      --forth-color: #fffdfd;
+
+    }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background-color: blue;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 100px;
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+      }
+      .logo {
+        font-size: 32px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+      .navbar a {
+        position: relative;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        margin-left: 40px;
+      }
+      .navbar a::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #fff;
+        transition: 0.3s;
+      }
+      .navbar a:hover::before {
+        width: 100%;
+      }
+
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      
+      
+      background-color: black;
+
+
+    }
+
+    .main-content {
+      position: relative;
+      min-height: 100vh;
+      z-index: 2;
+    }
+
+    .container {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 1;
+
+    }
+
+    .bubbles {
+      position: absolute;
+      display: flex;
+      z-index: -1;
+    }
+
+    .bubbles span {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      background: orange;
+      margin: 0 4px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 10px rgb(255, 165, 0),
+        0 0 50px rgb(255, 123, 0), 0 0 100px rgb(255, 81, 0);
+      animation: animate 15s linear infinite;
+      animation-duration: calc(125s / var(--i));
+
+    }
+
+    /*.bubbles span:nth-child(even) {
+      background: yellowgreen;
+      box-shadow:
+        0 0 0 10px hsla(84, 67%, 59%, 0),
+        0 0 50px rgba(178, 251, 69, 0),
+        0 0 100px rgba(154, 241, 25, 0);
+
+    }*/
+
+    @keyframes animate {
+      0% {
+        transform: translateY(100vh) scale(0);
+      }
+
+      100% {
+        transform: translateY(-10vh)scale(1);
+      }
+    }
+
+    footer {
+      /*background-color:  rgba(255, 255, 255, 0.7);*/
+      background-color: orange;
+      margin: 0%;
+      padding: 0%;
+      width: 100%;
+      height: 100px;
+      z-index: 5;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+
+    .social-icons ul {
+      padding-top: 15px;
+
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+    }
+
+    .social-icons ul li {
+      margin: 0 15px;
+
+    }
+
+    .rights {
+      padding-top: 10px;
+      margin-bottom: 5px;
+      text-align: center;
+
+    }
+    a {
+    text-decoration: none;
+    color: black;
+  }
+
+    .form-box {
+      width: 1200px;
+      height: 300px;
+      position: relative;
+      margin: 15% auto;
+      background-color: rgba(255, 255, 255, 0.7);
+      
+      padding: 5px;
+      z-index: 4;
+
+    }
+
+    .button-box {
+      width: 220px;
+      margin: 35px auto;
+      position: relative;
+      box-shadow: 0 0 20px 9px #ff61241f;
+      border-radius: 30px;
+    }
+
+    .toggle-btn {
+      padding: 10px 30px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      outline: none;
+      position: relative;
+      font-family: cursive;
+      z-index: 3;
+    }
+
+    #btn1 {
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 110px;
+      height: 100%;
+      background: linear-gradient(to right, var(--first-color), var(--second-color));
+      border-radius: 30px;
+      transition: .5s;
+      z-index: 2;
+    }
+
+    #btn2 {
+      top: 0;
+      left: 110px;
+      position: absolute;
+      width: 110px;
+      height: 100%;
+
+      border-radius: 30px;
+      transition: .5s;
+      z-index: 2;
+    }
+
+    h3 {
+      font-size: medium;
+      font-weight: bold;
+      z-index: 3;
+
+    }
+
+    .input-group {
+      position: absolute;
+      width: 280px;
+      transition: .5s;
+      padding-left: 35px;
+      z-index: 2;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 2px 0;
+      margin: 5px 0;
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 1px solid#999;
+      outline: none;
+
+      background: transparent;
+      z-index: 2;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      border: none;
+
+      background-color: #cdc9c9;
+      padding: 5px;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    .submit-btn {
+      width: 85%;
+      padding: 10px 30px;
+      cursor: pointer;
+      display: block;
+      margin: 15px auto;
+      background: linear-gradient(to right, var(--first-color), var(--second-color));
+      border: 0;
+      outline: none;
+      border-radius: 30px;
+      font-family: cursive;
+    }
+
+
+    .he {
+      
+        font-weight: 700;
+
+      font-family: cursive, Arial;
+      
+      position: absolute;
+      top: 4%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      font-size: 59px;
+      color: rgb(255, 115, 0);
+      /* Text color */
+      background-color: rgba(255, 255, 255, 0.7);
+      /* White color with 50% transparency */
+      padding: 10px 20px;
+      z-index: 2;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="main-content">
+    
+    
+    <div class="container">
+
+      <div class="bubbles">
+
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:21;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:28;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:21;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:28;"></span>
+      </div>
+      
+    </div>
+    {% block content %}{% endblock %}
+
+
+
+  </div>
+  <footer>
+    <div class="social-icons">
+
+      <ul>
+        <li><a href="https://www.djangoproject.com/"><i class="fa-brands fa-facebook"></i></a></li>
+        <li><a href="https://www.djangoproject.com/"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="https://www.djangoproject.com/"><i class="fa-solid fa-envelope"></i></a></li>
+      </ul>
+    </div>
+    <div class="rights">
+      <p>&copy; 2023 Funny Games. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

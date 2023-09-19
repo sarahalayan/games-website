@@ -1,0 +1,49 @@
+{% extends "game/homee.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .form-box{
+        width: 350px;
+        height: 500px;
+        text-align: center;
+    }
+</style>
+<div class="header">
+    <a href="#" class="logo">Funny Games</a>
+    <div class="navbar">
+      <a href="{% url 'index' %}">Home</a>
+      <a href="#" id="backToGame">Back</a>
+      
+      <a href="{% url 'logout' %}">Log out</a>
+      <a href="{% url 'myprofile' %}">Profile</a>
+    </div>
+  </div>
+
+
+    <div class="form-box">
+        <h1>High Scores for {{ game.name }}</h1>
+        <br>
+        {% if game.name != "Asteroids" %}
+            <ul>
+                {% for score in high_scores %}
+                    <li>{{ score.player.user.username }} - {{ score.game_data}}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <ul>
+            {% for score in high_scores %}
+                <li>{{ score.player.user.username }} - {{ score.game_data.score}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById("backToGame").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag (which is navigating to "#").
+        history.back(); // Go back in the browser history.
+        });
+
+    </script>
+    
+    {% endblock content %}

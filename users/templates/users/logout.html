@@ -1,0 +1,17 @@
+{% extends "users/home.html" %}
+{% block content %}
+<style>
+    .form-box {
+        height: 150px;
+    }
+
+    h2 {
+        margin-left: 35px;
+    }
+</style>
+<div class="form-box">
+    <h2>You have been loged out</h2>
+    <button class="submit-btn"><a href="{%url 'login' %}">Log In Again</a></button>
+
+</div>
+{% endblock content %}

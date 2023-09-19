@@ -1,0 +1,96 @@
+{% extends "users/home.html" %}
+{% block content %}
+
+
+<style>
+    .form-box {
+        width: 380px;
+        height: 480px;
+        position: relative;
+        margin: 15% auto;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px;
+        z-index: 2;
+    }
+
+
+    .submit-btn {
+        width: 85%;
+
+        padding: 10px 30px;
+        cursor: pointer;
+        display: block;
+        margin: 30px auto;
+        background: linear-gradient(to right, var(--first-color), var(--second-color));
+        border: 0;
+        outline: none;
+        border-radius: 30px;
+        font-family: cursive;
+    }
+
+    .button-with-href {
+        text-decoration: none;
+        color: black;
+    }
+    #btn1{
+        left: 110px;
+    }
+    #btn2{
+        left: 0;
+    }
+</style>
+
+
+<div class="form-box">
+    <div class="button-box">
+        <div id="btn2"></div>
+        <button type="button" class="toggle-btn toggle-btn1" onclick="register()">Register</button>
+        <div id="btn1"></div>
+        <button type="button" class="toggle-btn toggle-btn2" onclick="login()">Log In</button>
+
+    </div>
+    <form method="POST"  class="input-group">
+        {% csrf_token %}
+        {{form.as_p}}
+        <!--<h3>Username:</h3>
+               <div >{{form.username}}</div>
+                <h3>Password:</h3>
+               <div >{{form.password}}</div>-->
+
+
+
+
+
+        <div>
+            <button type="submit" class="submit-btn">Sign In</button>
+
+            <button class="submit-btn"><a class="button-with-href" href="{%url 'password_reset' %}">Forgot
+                    Password?</a></button>
+        </div>
+    </form>
+
+</div>
+
+
+
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleButton1 = document.querySelector(".toggle-btn1");
+        toggleButton1.addEventListener("click", function () {
+
+            window.location.href = "http://127.0.0.1:8000/";
+        });
+
+        var toggleButton2 = document.querySelector(".toggle-btn2");
+        toggleButton2.addEventListener("click", function (event) {
+
+            window.location.href = "http://127.0.0.1:8000/login/";
+        });
+    });
+   
+</script>
+
+{% endblock content %}

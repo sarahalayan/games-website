@@ -1,0 +1,66 @@
+{% extends "users/home.html" %}
+{% block content %}
+<style>
+  .form-box {
+    width: 380px;
+    height: 750px;
+    position: relative;
+    margin: 15% auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 5px;
+    z-index: 4;
+    margin-bottom: 50px;
+
+  }
+</style>
+<div class="form-box">
+  <div class="button-box">
+    <div id="btn1"></div>
+    <button type="button" class=" toggle-btn toggle-btn1" onclick="register()">Register</button>
+    <div id="btn2"></div>
+    <button type="button" class="toggle-btn toggle-btn2" onclick="login()">Log In</button>
+  
+  </div>
+  <form method="POST" class="input-group">
+    {% csrf_token %}
+    {{form.as_p}}
+    <!-- <h3>Username:</h3>
+               <div class="form-input">{{form.username}}</div> 
+               <h3 >Email Address:</h3>
+               <div class="form-input">{{form.email}}</div>
+               <h3>Phone Number:</h3>
+               <div class="form-input">{{form.phone_number }}</div>
+               <h3>Password:</h3>
+               <div class="form-input">{{form.password1}}</div>
+               <h3>Confirm Your Password:</h3>
+               <div class="form-input">{{form.password2}}</div>-->
+
+    <div>
+      <button type="submit" class="submit-btn">Sign Up</button>
+    </div>
+  </form>
+
+</div>
+</div>
+</div>
+
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var toggleButton1 = document.querySelector(".toggle-btn1");
+    toggleButton1.addEventListener("click", function () {
+
+      window.location.href = "http://127.0.0.1:8000/";
+    });
+
+    var toggleButton2 = document.querySelector(".toggle-btn2");
+    toggleButton2.addEventListener("click", function (event) {
+
+      window.location.href = "http://127.0.0.1:8000/login/";
+    });
+  });
+  
+</script>
+{% endblock content %}

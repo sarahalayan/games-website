@@ -1,0 +1,53 @@
+{% extends "users/home.html" %}
+{% block content %}
+<style>
+    .form-box {
+        height: 400px;
+    }
+</style>
+<div class="form-box">
+
+
+    <div class="form-input">
+        <h2>{{user.username}}</h2>
+        <p>{{user.email}}</p>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-input">{{u_form.username }}</div>
+        <div class="form-input">{{u_form.email }}</div>
+
+
+
+
+        <div>
+            <button class="submit-btn" type="submit">Update</button>
+        </div>
+        
+    </form>
+    <div>
+        <button class="submit-btn link" id="backToGame" >Back</button>
+    </div>
+</div>
+<script>
+    /*var previousURL = document.referrer;
+
+    if (previousURL) {
+    console.log("Previous URL: " + previousURL);
+    } else {
+    console.log("No previous URL available.");
+    }*/
+    
+       
+    
+
+        document.getElementById("backToGame").addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default behavior of the anchor tag (which is navigating to "#").
+        history.back(); // Go back in the browser history.
+        });
+
+   
+    </script>
+{% endblock content %}
